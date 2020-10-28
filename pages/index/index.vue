@@ -30,42 +30,42 @@ import lList from '../../components/common/l-list.vue'
 				list:[
 				{
 					rank: 4,
-					image: '../../static/1.jpg',
+					image: '../../static/me.jpg',
 					people: 990,
 					title: '二次元',
 					finish:0    //0表示结束 1 表示正在直播
 				},
 				{
 					rank: 1,
-					image: '../../static/1.jpg',
+					image: '../../static/me.jpg',
 					people: 122,
 					title: '户外',
 					finish:0    //0表示结束 1 表示正在直播
 				},
 				{
 					rank: 3,
-					image: '../../static/1.jpg',
+					image: '../../static/me.jpg',
 					people: 324,
 					title: '健身',
 					finish: 0    //0表示结束 1 表示正在直播
 				},
 				{
 					rank: 6,
-					image: '../../static/1.jpg',
+					image: '../../static/me.jpg',
 					people: 684,
 					title: '美食',
 					finish: 1    //0表示结束 1 表示正在直播
 				},
 				{
 					rank: 5,
-					image: '../../static/1.jpg',
+					image: '../../static/me.jpg',
 					people: 543,
 					title: '帅哥',
 					finish: 1    //0表示结束 1 表示正在直播
 				},
 				{
 					rank: 2,
-					image: '../../static/1.jpg',
+					image: '../../static/me.jpg',
 					people: 1100,
 					title: '美女',
 					finish: 1    //0表示结束 1 表示正在直播
