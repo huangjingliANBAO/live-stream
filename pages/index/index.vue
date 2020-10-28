@@ -1,52 +1,92 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+			<!-- 轮播图 -->
+			<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="200" style="width: 750rpx;height: 250rpx;">
+				<swiper-item>
+					<image src="../../static/1.jpg" style="width: 750rpx;height: 250rpx;"></image>
+				</swiper-item>
+				<swiper-item>
+					<image src="../../static/2.jpg" style="width: 750rpx;height: 250rpx;"></image>
+				</swiper-item>
+			</swiper>
+		<!-- </view> -->
+		<view class="flex flex-wrap">
+			<l-list v-for="(item,index) in list" :key="index" :item="item" :index="index" @into="live"></l-list>
 		</view>
+			
 	</view>
 </template>
 
 <script>
+import navBar from '../../components/common/nav-bar.vue';
+import lList from '../../components/common/l-list.vue'
 	export default {
+		components:{
+			navBar,lList
+		},
 		data() {
-			return {
-				title: 'Hello'
+			return{
+				
+				list:[
+				{
+					rank: 4,
+					image: '../../static/1.jpg',
+					people: 990,
+					title: '二次元',
+					finish:0    //0表示结束 1 表示正在直播
+				},
+				{
+					rank: 1,
+					image: '../../static/1.jpg',
+					people: 122,
+					title: '户外',
+					finish:0    //0表示结束 1 表示正在直播
+				},
+				{
+					rank: 3,
+					image: '../../static/1.jpg',
+					people: 324,
+					title: '健身',
+					finish: 0    //0表示结束 1 表示正在直播
+				},
+				{
+					rank: 6,
+					image: '../../static/1.jpg',
+					people: 684,
+					title: '美食',
+					finish: 1    //0表示结束 1 表示正在直播
+				},
+				{
+					rank: 5,
+					image: '../../static/1.jpg',
+					people: 543,
+					title: '帅哥',
+					finish: 1    //0表示结束 1 表示正在直播
+				},
+				{
+					rank: 2,
+					image: '../../static/1.jpg',
+					people: 1100,
+					title: '美女',
+					finish: 1    //0表示结束 1 表示正在直播
+				},
+				]
 			}
 		},
 		onLoad() {
-
+			// uni.hideTabBar();
 		},
-		methods: {
-
+		methods:{
+			live(value) {
+				// console.log(value);
+				uni.navigateTo({
+					url: '/pages/live/live'
+				})
+				
+			}
 		}
 	}
 </script>
 
 <style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
 </style>
