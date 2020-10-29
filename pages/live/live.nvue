@@ -34,13 +34,19 @@
 				</view>
 			</view>
 			<!-- 金币 -->
-			<view style="height: 80rpx;" class="px-2 my-2 bg-secondary">
-				<text>金币</text>
+			<view style="height: 80rpx;" class="px-2 my-2">
+				<view style="width: 325rpx;background-color:rgba(0,0,0,0.4);" class="flex rounded-circle align-center">
+					<view class="p">
+						<text class="text-warning">金币</text>
+					</view>
+					<view class="flex-1 flex flex-column justify-center">
+						<text class="text-white font">100</text>
+					</view>
+				</view>
 			</view>
 			<!-- 收到礼物 -->
-			<view style="height: 300rpx;" class="bg-main">
-				<text>礼物区</text>
-			</view>
+			
+			<f-gift ref="gift"></f-gift>
 			<!-- 底部 -->
 			<view style="height: 120rpx;" class="flex align-center justify-between fixed-bottom bg-danger">
 			</view>
@@ -49,19 +55,34 @@
 </template>
 
 <script>
+	import fGift from '@/components/common/f-gift.vue';
 	export default {
+		components:{
+			fGift
+		},
 		data() {
 			return {
 				statusBarHeight: 0,
 				content:''
 			};
 		},
+		mounted(){
+			//送礼物演示
+			setInterval(() =>{
+				this.$refs.gift.send({
+					username:"发送人",
+					avatar:"",
+					gift_name:"蛋糕",
+					gift_image:"/static/gift/3.png",
+					num:1
+				})
+			},3000)
+		},
 		onLoad() {
 			let res = uni.getSystemInfoSync()
 			this.statusBarHeight = res.statusBarHeight
-		},
-		methods:{
 		}
+		
 	}
 </script>
 
