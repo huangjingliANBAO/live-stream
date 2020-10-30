@@ -60,7 +60,7 @@
 			</view>
 			<view class="flex align-center">
 				<view class="btn btn-icon">
-					<text class="iconfont text-white" style="font-size: 40px;">&#xe633;</text>
+					<text class="iconfont text-white" style="font-size: 40px;" @click="openCoin">&#xe633;</text>
 				</view>
 				<view class="btn btn-icon bg-warning" @click="openGift"><text class="iconfont">&#xe67c;</text></view>
 				<view class="btn btn-icon"><text class="iconfont text-white">&#xe7cd;</text></view>
@@ -77,40 +77,38 @@
 			</view>
 		</uni-popup>
 		<!-- 送出礼物弹出层 -->
-		  <uni-popup type="bottom" ref="giftPopup">
-			  <view class="bg-white" style="width: 750rpx;height: 550rpx;">
-				  <view style="height: 100rpx;" class="flex justify-between align-center">
-					  <text class="text-main font-md ml-3">礼物</text>
-					  <view class="flex align-center justify-center" style="width:100rpx;width: 100rpx;" @click="closeGift">
-						  <text class="iconfont">&#xe607;</text>
-					  </view>
-				  </view>
-				  <swiper :indicator-dots="true" :duration="500" style="height: 350rpx;" class="border-bottom border-top">
-					  <swiper-item>
-						  <view class="flex flex-wrap">
-							  <view style="width: 187rpx; height: 175rpx;" class="flex flex-column justify-center align-center"
-							  v-for="(item,index) in gifts"
-							  :key="index" :class="giftActiveId === item.id ? ' border border-main': ''"
-							  @click="giftActiveId = item.id">
-							  <image :src="item.image" style="width:70rpx;height:70rpx;" class="rounded"></image>
-							  <view class="flex mt-1">
-								  <text class="text-warning font mr-1">{{item.name}}</text>
-								  <text class="text-secondary font">{{item.coin}}</text>
-							  </view>
-							  </view>
-						  </view>
-					  </swiper-item>
-				  </swiper>
-				  <view style="height: 100rpx;" class="flex align-center justify-end">
-					  <view class="flex align-center justify-center py-2 px-2 mr-3 rounded bg-warning" @click="openCoin">
-						  <text class="font">充值</text>
-					  </view>
-					  <view class="flex align-center justify-center py-2 px-2 mr-3 rounded bg-main" @click="sendGift">
-						  <text class="font text-white">发送</text>
-					  </view>
-				  </view>
-			  </view>
-		  </uni-popup>
+		<uni-popup type="bottom" ref="giftPopup">
+			<view class="bg-white" style="width: 750rpx;height: 550rpx;">
+				<view style="height: 100rpx;" class="flex justify-between align-center">
+					<text class="text-main font-md ml-3">礼物</text>
+					<view class="flex align-center justify-center" style="width:100rpx;width: 100rpx;" @click="closeGift">
+						<text class="iconfont">&#xe607;</text>
+					</view>
+				</view>
+				<swiper :indicator-dots="true" :duration="500" style="height: 350rpx;" class="border-bottom border-top">
+					<swiper-item>
+						<view class="flex flex-wrap">
+							<view style="width: 187rpx; height: 175rpx;" class="flex flex-column justify-center align-center" v-for="(item,index) in gifts"
+							 :key="index" :class="giftActiveId === item.id ? ' border border-main': ''" @click="giftActiveId = item.id">
+								<image :src="item.image" style="width:70rpx;height:70rpx;" class="rounded"></image>
+								<view class="flex mt-1">
+									<text class="text-warning font mr-1">{{item.name}}</text>
+									<text class="text-secondary font">{{item.coin}}</text>
+								</view>
+							</view>
+						</view>
+					</swiper-item>
+				</swiper>
+				<view style="height: 100rpx;" class="flex align-center justify-end">
+					<view class="flex align-center justify-center py-2 px-2 mr-3 rounded bg-warning" @click="openCoin">
+						<text class="font">充值</text>
+					</view>
+					<view class="flex align-center justify-center py-2 px-2 mr-3 rounded bg-main" @click="sendGift">
+						<text class="font text-white">发送</text>
+					</view>
+				</view>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
@@ -151,30 +149,36 @@
 			this.gifts = myGifts
 		},
 		methods: {
-			openGift(){
+			openCoin() {
+				console.log('点击了中间按钮');
+				uni.navigateTo({
+					url: '/pages/coin/coin'
+				});
+			},
+			openGift() {
 				this.$refs.giftPopup.open()
 			},
-			closeGift(){
+			closeGift() {
 				this.$refs.giftPopup.close()
 			},
-			sendGift(){
-				if(this.giftActiveId === 0){
+			sendGift() {
+				if (this.giftActiveId === 0) {
 					return uni.showToast({
-						title:'请选择要发送的礼物',
-						icon:'none'
+						title: '请选择要发送的礼物',
+						icon: 'none'
 					});
 				}
 				let index = this.gifts.findIndex(item => item.id === this.giftActiveId)
-				if(index === -1){
+				if (index === -1) {
 					return
 				}
 				let g = this.gifts[index]
 				this.$refs.gift.send({
-					username:'芝麻糊',
-					avatar:'',
-					gift_name:g.name,
-					gift_image:g.image,
-					num:10
+					username: '芝麻糊',
+					avatar: '',
+					gift_name: g.name,
+					gift_image: g.image,
+					num: 10
 				})
 				this.closeGift()
 			},
@@ -200,12 +204,8 @@
 				uni.navigateBack({
 					delta: 1
 				});
-			},
-			openCoin(){
-				uni.navigateTo({
-					url:'../coin/coin'
-				})
 			}
+
 		}
 	}
 </script>
