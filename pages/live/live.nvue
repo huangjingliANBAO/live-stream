@@ -200,6 +200,11 @@
 				uni.navigateBack({
 					delta: 1
 				});
+			},
+			openCoin(){
+				uni.navigateTo({
+					url:'../coin/coin'
+				})
 			}
 		}
 	}

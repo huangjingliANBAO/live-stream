@@ -22,7 +22,15 @@
 			}
 		}
 
-	],
+	    ,{
+            "path" : "pages/coin/coin",
+            "style" : {
+				"navigationBarTextStyle":"black",
+				"navigationBarTitleText":"我的余额",
+				"navigationBarBackgroundColor":"#ffffff"
+			}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "直播",
