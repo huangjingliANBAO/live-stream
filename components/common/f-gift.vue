@@ -5,7 +5,6 @@
 		<view style="width: 325rpx; background-image:linear-gradient(to right,#BCABB1,#65AAF0);" class="flex rounded-circle">
 			<view class="p">
 				<image :src="item.avatar || defaultAavtar" style="width: 70rpx;height: 70rpx;" class="rounded-circle"></image>
-				
 			</view>
 			<view class="flex-1 flex flex-column justify-center">
 				<text class="text-white font">{{item.username}}</text>
