@@ -12,7 +12,7 @@
 				uni.navigateTo({
 					url:'pages/create-live/create-live'
 				});
-				console.log('点击了中间按钮');
+				console.log('点击了中间按钮1111');
 			})
 		},
 		onShow: function () {

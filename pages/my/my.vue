@@ -43,8 +43,8 @@
 			}
 		},
 		onLoad() {
-			let res = uni.getSystemInfoSync()
-			this.statusBarHeight = res.statusBarHeight
+			let res = uni.getSystemInfoSync();
+			this.statusBarHeight = res.statusBarHeight;
 		}
 	}
 </script>
