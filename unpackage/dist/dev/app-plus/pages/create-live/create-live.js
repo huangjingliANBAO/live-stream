@@ -1272,7 +1272,12 @@ var render = function() {
                         "align-center",
                         "justify-center"
                       ],
-                      attrs: { sytle: "height:120rpx;width:100rpx" }
+                      attrs: { sytle: "height:120rpx;width:100rpx" },
+                      on: {
+                        click: function($event) {
+                          _vm.openPopup("mode")
+                        }
+                      }
                     },
                     [
                       _c(
@@ -1356,7 +1361,74 @@ var render = function() {
                 _vm._v("开始视频直播")
               ])
             ]
-          )
+          ),
+          _c("uni-popup", { ref: "popup", attrs: { type: "bottom" } }, [
+            _c("view", { staticClass: ["bg-white"] }, [
+              _c(
+                "view",
+                {
+                  staticClass: [
+                    "flex",
+                    "align-center",
+                    "justify-center",
+                    "border-bottom"
+                  ],
+                  staticStyle: { height: "90rpx" }
+                },
+                [
+                  _c("u-text", { staticClass: ["font-md"] }, [
+                    _vm._v(_vm._s(_vm.popupTitle))
+                  ])
+                ]
+              ),
+              _vm.popupType === "mode"
+                ? _c(
+                    "view",
+                    _vm._l(_vm.modeList, function(item, index) {
+                      return _c(
+                        "view",
+                        {
+                          key: index,
+                          staticClass: [
+                            "flex",
+                            "align-center",
+                            "justify-center",
+                            "py-2"
+                          ],
+                          class: _vm.mode === item.type ? "bg-main" : "",
+                          on: {
+                            click: function($event) {
+                              _vm.chooseMode(item)
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "u-text",
+                            {
+                              staticClass: ["font-md"],
+                              class: _vm.mode === item.type ? "text-white" : ""
+                            },
+                            [_vm._v(_vm._s(item.desc))]
+                          )
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _c("view", { staticClass: ["f-divider"] }),
+              _c(
+                "view",
+                {
+                  staticClass: ["flex", "align-center", "justify-center"],
+                  staticStyle: { height: "90rpx" },
+                  attrs: { hoverClass: "bg-light" }
+                },
+                [_c("u-text", { staticClass: ["font-md"] }, [_vm._v("取消")])]
+              )
+            ])
+          ])
         ],
         1
       )
@@ -1386,93 +1458,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _F_t
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--4-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!E:/dev/live-stream/pages/create-live/create-live.nvue?vue&type=script&lang=js&mpType=page ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-eval("/* WEBPACK VAR INJECTION */(function(__f__) {Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0; //\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\nvar _default =\n{\n  data: function data() {\n    return {\n      url: '', //直播服务器地址\n      mode: 'SD', //标清模式\n      enableCamera: true, //是否启用摄像头\n      position: \"back\", //默认摄像头\n      beauty: 0, //美颜度\n      whiteness: 0, //美白读\n      windowHeight: 0, //窗体高度\n      context: null, //上下文\n      statusBarHeight: 0 };\n\n  },\n  //监听页面加载，其参数为上个页面传递的数据，参数类型为Object(用于页面传参)\n  onLoad: function onLoad() {\n    var res = uni.getSystemInfoSync();\n    this.windowHeight = res.windowHeight;\n    this.statusBarHeight = res.statusBarHeight;\n  },\n  //监听页面初次渲染完成，注意如果渲染速度快，会在页面进入动画完成前触发\n  onReady: function onReady() {\n    this.context = uni.createLivePusherContext('livePusher', this);\n    this.startPreview();\n  },\n  methods: {\n    //开启预览\n    startPreview: function startPreview() {\n      this.context.startPreview({\n        success: function success(e) {\n          __f__(\"log\", e, \" at pages/create-live/create-live.nvue:77\");\n        } });\n\n    },\n    //切换摄像头\n    switchCamera: function switchCamera() {var _this = this;\n      this.context.switchCamera({\n        success: function success(e) {\n          _this.position = _this.position === 'back' ? 'front' : 'back';\n        } });\n\n    } },\n\n  //直播状态的变化\n  statechange: function statechange(e) {\n    __f__(\"log\", e, \" at pages/create-live/create-live.nvue:92\");\n  },\n  //直播网络的变化\n  netstatus: function netstatus(e) {\n    __f__(\"log\", e, \" at pages/create-live/create-live.nvue:96\");\n  },\n  //直播出错\n  error: function error(e) {\n    __f__(\"log\", e, \" at pages/create-live/create-live.nvue:100\");\n  } };exports.default = _default;\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js */ 9)[\"default\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvY3JlYXRlLWxpdmUvY3JlYXRlLWxpdmUubnZ1ZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBOENBO0FBQ0EsTUFEQSxrQkFDQTtBQUNBO0FBQ0EsYUFEQSxFQUNBO0FBQ0EsZ0JBRkEsRUFFQTtBQUNBLHdCQUhBLEVBR0E7QUFDQSxzQkFKQSxFQUlBO0FBQ0EsZUFMQSxFQUtBO0FBQ0Esa0JBTkEsRUFNQTtBQUNBLHFCQVBBLEVBT0E7QUFDQSxtQkFSQSxFQVFBO0FBQ0Esd0JBVEE7O0FBV0EsR0FiQTtBQWNBO0FBQ0EsUUFmQSxvQkFlQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLEdBbkJBO0FBb0JBO0FBQ0EsU0FyQkEscUJBcUJBO0FBQ0E7QUFDQTtBQUNBLEdBeEJBO0FBeUJBO0FBQ0E7QUFDQSxnQkFGQSwwQkFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLFNBSEE7O0FBS0EsS0FSQTtBQVNBO0FBQ0EsZ0JBVkEsMEJBVUE7QUFDQTtBQUNBO0FBQ0E7QUFDQSxTQUhBOztBQUtBLEtBaEJBLEVBekJBOztBQTJDQTtBQUNBLGFBNUNBLHVCQTRDQSxDQTVDQSxFQTRDQTtBQUNBO0FBQ0EsR0E5Q0E7QUErQ0E7QUFDQSxXQWhEQSxxQkFnREEsQ0FoREEsRUFnREE7QUFDQTtBQUNBLEdBbERBO0FBbURBO0FBQ0EsT0FwREEsaUJBb0RBLENBcERBLEVBb0RBO0FBQ0E7QUFDQSxHQXREQSxFIiwiZmlsZSI6IjguanMiLCJzb3VyY2VzQ29udGVudCI6WyI8dGVtcGxhdGU+XHJcblx0PHZpZXc+XHJcblx0XHQ8bGl2ZS1wdXNoZXIgaWQ9XCJsaXZlUHVzaGVyXCIgcmVmPVwibGl2ZVB1c2hlclwiIGNsYXNzPVwibGl2ZVB1c2hlclwiIDp1cmw9XCJ1cmxcIiA6bW9kZT1cIm1vZGVcIiA6ZW5hYmxlLWNhbWVyYT1cImVuYWJsZUNhbWVyYVwiXHJcblx0XHQgOmF1dG8tZm9jdXM9XCJ0cnVlXCIgOmRldmljZS1wb3NpdGlvbj1cInBvc2l0aW9uXCIgOmJlYXV0eT1cImJlYXV0eVwiIDp3aGl0ZW5jaGFuZ2U9XCJ3aGl0ZW5lc3NcIiBhc3BlY3Q9XCI5OjE2XCIgQHN0YXRlY2hhbmdlPVwic3RhdGVjaGFuZ2VcIlxyXG5cdFx0IEBuZXRzdGF0dXM9XCJuZXRzdGF0dXNcIiBAZXJyb3I9XCJlcnJvclwiIDpzdHlsZT1cIidoZWlnaHQ6JyArIHdpbmRvd0hlaWdodCArICdweDsnXCIgc3R5bGU9XCJ3aWR0aDogNzUwcnB4O1wiPlxyXG5cdFx0PC9saXZlLXB1c2hlcj5cclxuXHRcdDx2aWV3IHN0eWxlPVwicG9zaXRpb246IGZpeGVkO2xlZnQ6IDA7cmlnaHQ6IDA7aGVpZ2h0OjUwMHJweCA7XCIgOnN0eWxlPVwiJ3RvcDonICsgc3RhdHVzQmFySGVpZ2h0KyAncHg7J1wiPlxyXG5cdFx0XHQ8dmlldyBjbGFzcz1cImZsZXggYWxpZ24tY2VudGVyIGp1c3RpZnktY2VudGVyXCIgc3l0bGU9XCJ3aWR0aDo5MHJweDtoZWlnaHQ6OTBycHg7XCI+XHJcblx0XHRcdFx0PHRleHQgY2xhc3M9XCJpY29uZm9udCB0ZXh0LXdoaXRlXCI+JiN4ZTYwNzs8L3RleHQ+XHJcblx0XHRcdDwvdmlldz5cclxuXHRcdFx0PHZpZXcgY2xhc3M9XCJwb3NpdGlvbi1hYnNvbHV0ZSByb3VuZGVkIHAtMiBmbGV4IGFsaWduLWNlbnRlclwiIHN5dGxlPVwibGVmdDo5MHJweDtyaWdodDoxMDBycHg7aGVpZ2h0OjE2MHJweDtiYWNrZ3JvdW5kLWNvbG9yOnJnYmEoMCwwLDAsMC4yKTtcIj5cclxuXHRcdFx0XHQ8dmlldyBzdHlsZT1cImhlaWdodDogMTIwcnB4O3dpZHRoOiAxMjBycHg7XCIgY2xhc3M9XCJwb3NpdGlvbi1yZWxhdGl2ZSByb3VuZGVkXCI+XHJcblx0XHRcdFx0XHQ8aW1hZ2Ugc3JjPVwiLi4vLi4vc3RhdGljL2dpZnQvNy5wbmdcIiBzeXRsZT1cImhlaWdodDoxMjBycHg7d2lkdGg6MTIwcnB4XCI+PC9pbWFnZT5cclxuXHRcdFx0XHRcdDx0ZXh0IGNsYXNzPVwidGV4dC13aGl0ZSBwb3NpdGlvbi1hYnNvbHV0ZSBmb250XCIgc3R5bGU9XCJsZWZ0OiAwO3JpZ2h0OiAwO2JvdHRvbTogMDtcIj7mm7TmjaLlsIHpnaI8L3RleHQ+XHJcblx0XHRcdFx0PC92aWV3PlxyXG5cdFx0XHRcdDx2aWV3IGNsYXNzPVwiZmxleC0xIG1sLTJcIj5cclxuXHRcdFx0XHRcdDxpbnB1dCB0eXBlPVwidGV4dFwiIHZhbHVlPVwiXCIgcGxhY2Vob2xkZXI9XCLor7fovpPlhaXnm7Tmkq3moIfpophcIiBjbGFzcz1cIm1iLTJcIiAvPlxyXG5cdFx0XHRcdFx0PHRleHQgY2xhc3M9XCJ0ZXh0LXdoaXRlIGZvbnRcIj7or7fpgInmi6nliIbnsbs8L3RleHQ+XHJcblx0XHRcdFx0PC92aWV3PlxyXG5cdFx0XHQ8L3ZpZXc+XHJcblx0XHRcdDx2aWV3IGNsYXNzPVwicG9zaXRpb24tYWJzb2x1dGUgcmlnaHQtMCBmbGV4IGZsZXgtY29sdW1uXCIgc3R5bGU9XCJ3aWR0aDogMTAwcnB4O1wiPlxyXG5cdFx0XHRcdDx2aWV3IHN5dGxlPVwiaGVpZ2h0OjEyMHJweDt3aWR0aDoxMDBycHhcIiBjbGFzcz1cImZsZXggZmxleC1jb2x1bW4gYWxpZ24tY2VudGVyIGp1c3RpZnktY2VudGVyXCIgQGNsaWNrPVwic3dpdGNoQ2FtZXJhXCI+XHJcblx0XHRcdFx0XHQ8dGV4dCBjbGFzcz1cImljb25mb250IHRleHQtd2hpdGUgbWItMVwiPiYjeGU2MDU7PC90ZXh0PlxyXG5cdFx0XHRcdFx0PHRleHQgY2xhc3M9XCJ0ZXh0LXdoaXRlIGZvbnRcIj7nv7vovaw8L3RleHQ+XHJcblx0XHRcdFx0PC92aWV3PlxyXG5cdFx0XHRcdDx2aWV3IHN5dGxlPVwiaGVpZ2h0OjEyMHJweDt3aWR0aDoxMDBycHhcIiBjbGFzcz1cImZsZXggZmxleC1jb2x1bW4gYWxpZ24tY2VudGVyIGp1c3RpZnktY2VudGVyXCI+XHJcblx0XHRcdFx0XHQ8dGV4dCBjbGFzcz1cImljb25mb250IHRleHQtd2hpdGUgbWItMVwiPiYjeGU2MGM7PC90ZXh0PlxyXG5cdFx0XHRcdFx0PHRleHQgY2xhc3M9XCJ0ZXh0LXdoaXRlIGZvbnRcIj7nlLvotKg8L3RleHQ+XHJcblx0XHRcdFx0PC92aWV3PlxyXG5cdFx0XHRcdDx2aWV3IHN5dGxlPVwiaGVpZ2h0OjEyMHJweDt3aWR0aDoxMDBycHhcIiBjbGFzcz1cImZsZXggZmxleC1jb2x1bW4gYWxpZ24tY2VudGVyIGp1c3RpZnktY2VudGVyXCI+XHJcblx0XHRcdFx0XHQ8dGV4dCBjbGFzcz1cImljb25mb250IHRleHQtd2hpdGUgbWItMVwiPiYjeGU2MzI7PC90ZXh0PlxyXG5cdFx0XHRcdFx0PHRleHQgY2xhc3M9XCJ0ZXh0LXdoaXRlIGZvbnRcIj7nvo7popw8L3RleHQ+XHJcblx0XHRcdFx0PC92aWV3PlxyXG5cdFx0XHRcdDx2aWV3IHN5dGxlPVwiaGVpZ2h0OjEyMHJweDt3aWR0aDoxMDBycHhcIiBjbGFzcz1cImZsZXggZmxleC1jb2x1bW4gYWxpZ24tY2VudGVyIGp1c3RpZnktY2VudGVyXCI+XHJcblx0XHRcdFx0XHQ8dGV4dCBjbGFzcz1cImljb25mb250IHRleHQtd2hpdGUgbWItMVwiPiYjeGU2MzE7PC90ZXh0PlxyXG5cdFx0XHRcdFx0PHRleHQgY2xhc3M9XCJ0ZXh0LXdoaXRlIGZvbnRcIj7nvo7nmb08L3RleHQ+XHJcblx0XHRcdFx0PC92aWV3PlxyXG5cdFx0XHQ8L3ZpZXc+XHJcblx0XHQ8L3ZpZXc+XHJcblx0XHQ8dmlldyBjbGFzcz1cInBvc2l0aW9uLWZpeGVkIGJnLW1haW4gZmxleCBhbGlnbi1jZW50ZXIganVzdGlmeS1jZW50ZXIgcm91bmRlZC1jaXJjbGVcIiBzdHlsZT1cImxlZnQ6IDEwMHJweDtyaWdodDogMTAwcnB4O2JvdHRvbTogMTAwcnB4O2hlaWdodDogMTIwcnB4O1wiPlxyXG5cdFx0XHQ8dGV4dCBjbGFzcz1cInRleHQtd2hpdGUgZm9udC1tZFwiPuW8gOWni+inhumikeebtOaSrTwvdGV4dD5cclxuXHRcdDwvdmlldz5cclxuXHQ8L3ZpZXc+XHJcbjwvdGVtcGxhdGU+XHJcblxyXG48c2NyaXB0PlxyXG5cdGV4cG9ydCBkZWZhdWx0IHtcclxuXHRcdGRhdGEoKSB7XHJcblx0XHRcdHJldHVybiB7XHJcblx0XHRcdFx0dXJsOiAnJywgLy/nm7Tmkq3mnI3liqHlmajlnLDlnYBcclxuXHRcdFx0XHRtb2RlOiAnU0QnLCAvL+agh+a4heaooeW8j1xyXG5cdFx0XHRcdGVuYWJsZUNhbWVyYTogdHJ1ZSwgLy/mmK/lkKblkK/nlKjmkYTlg4/lpLRcclxuXHRcdFx0XHRwb3NpdGlvbjogXCJiYWNrXCIsIC8v6buY6K6k5pGE5YOP5aS0XHJcblx0XHRcdFx0YmVhdXR5OiAwLCAvL+e+juminOW6plxyXG5cdFx0XHRcdHdoaXRlbmVzczogMCwgLy/nvo7nmb3or7tcclxuXHRcdFx0XHR3aW5kb3dIZWlnaHQ6IDAsIC8v56qX5L2T6auY5bqmXHJcblx0XHRcdFx0Y29udGV4dDogbnVsbCwvL+S4iuS4i+aWh1xyXG5cdFx0XHRcdHN0YXR1c0JhckhlaWdodDowXHJcblx0XHRcdH1cclxuXHRcdH0sXHJcblx0XHQvL+ebkeWQrOmhtemdouWKoOi9ve+8jOWFtuWPguaVsOS4uuS4iuS4qumhtemdouS8oOmAkueahOaVsOaNru+8jOWPguaVsOexu+Wei+S4uk9iamVjdCjnlKjkuo7pobXpnaLkvKDlj4IpXHJcblx0XHRvbkxvYWQoKSB7XHJcblx0XHRcdGxldCByZXMgPSB1bmkuZ2V0U3lzdGVtSW5mb1N5bmMoKVxyXG5cdFx0XHR0aGlzLndpbmRvd0hlaWdodCA9IHJlcy53aW5kb3dIZWlnaHRcclxuXHRcdFx0dGhpcy5zdGF0dXNCYXJIZWlnaHQgPSByZXMuc3RhdHVzQmFySGVpZ2h0XHJcblx0XHR9LFxyXG5cdFx0Ly/nm5HlkKzpobXpnaLliJ3mrKHmuLLmn5PlrozmiJDvvIzms6jmhI/lpoLmnpzmuLLmn5PpgJ/luqblv6vvvIzkvJrlnKjpobXpnaLov5vlhaXliqjnlLvlrozmiJDliY3op6blj5FcclxuXHRcdG9uUmVhZHkoKSB7XHJcblx0XHRcdHRoaXMuY29udGV4dCA9IHVuaS5jcmVhdGVMaXZlUHVzaGVyQ29udGV4dCgnbGl2ZVB1c2hlcicsIHRoaXMpXHJcblx0XHRcdHRoaXMuc3RhcnRQcmV2aWV3KClcclxuXHRcdH0sXHJcblx0XHRtZXRob2RzOiB7XHJcblx0XHRcdC8v5byA5ZCv6aKE6KeIXHJcblx0XHRcdHN0YXJ0UHJldmlldygpIHtcclxuXHRcdFx0XHR0aGlzLmNvbnRleHQuc3RhcnRQcmV2aWV3KHtcclxuXHRcdFx0XHRcdHN1Y2Nlc3M6IChlKSA9PiB7XHJcblx0XHRcdFx0XHRcdGNvbnNvbGUubG9nKGUpXHJcblx0XHRcdFx0XHR9XHJcblx0XHRcdFx0fSlcclxuXHRcdFx0fSxcclxuXHRcdFx0Ly/liIfmjaLmkYTlg4/lpLRcclxuXHRcdFx0c3dpdGNoQ2FtZXJhKCl7XHJcblx0XHRcdFx0dGhpcy5jb250ZXh0LnN3aXRjaENhbWVyYSh7XHJcblx0XHRcdFx0XHRzdWNjZXNzOihlKSA9PiB7XHJcblx0XHRcdFx0XHRcdHRoaXMucG9zaXRpb24gPSB0aGlzLnBvc2l0aW9uID09PSAnYmFjaycgPyAnZnJvbnQnOidiYWNrJ1xyXG5cdFx0XHRcdFx0fVxyXG5cdFx0XHRcdH0pXHJcblx0XHRcdH1cclxuXHRcdH0sXHJcblx0XHQvL+ebtOaSreeKtuaAgeeahOWPmOWMllxyXG5cdFx0c3RhdGVjaGFuZ2UoZSkge1xyXG5cdFx0XHRjb25zb2xlLmxvZyhlKTtcclxuXHRcdH0sXHJcblx0XHQvL+ebtOaSree9kee7nOeahOWPmOWMllxyXG5cdFx0bmV0c3RhdHVzKGUpIHtcclxuXHRcdFx0Y29uc29sZS5sb2coZSk7XHJcblx0XHR9LFxyXG5cdFx0Ly/nm7Tmkq3lh7rplJlcclxuXHRcdGVycm9yKGUpIHtcclxuXHRcdFx0Y29uc29sZS5sb2coZSk7XHJcblx0XHR9XHJcblx0fVxyXG48L3NjcmlwdD5cclxuXHJcbjxzdHlsZT5cclxuXHJcbjwvc3R5bGU+XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///8\n");
-
-/***/ }),
-/* 9 */
-/*!*********************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.log = log;exports.default = formatLog;function typof(v) {
-  var s = Object.prototype.toString.call(v);
-  return s.substring(8, s.length - 1);
-}
-
-function isDebugMode() {
-  /* eslint-disable no-undef */
-  return typeof __channelId__ === 'string' && __channelId__;
-}
-
-function log(type) {
-  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    args[_key - 1] = arguments[_key];
-  }
-  console[type].apply(console, args);
-}
-
-function formatLog() {
-  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-  var type = args.shift();
-  if (isDebugMode()) {
-    args.push(args.pop().replace('at ', 'uni-app:///'));
-    return console[type].apply(console, args);
-  }
-
-  var msgs = args.map(function (v) {
-    var type = Object.prototype.toString.call(v).toLowerCase();
-
-    if (type === '[object object]' || type === '[object array]') {
-      try {
-        v = '---BEGIN:JSON---' + JSON.stringify(v) + '---END:JSON---';
-      } catch (e) {
-        v = '[object object]';
-      }
-    } else {
-      if (v === null) {
-        v = '---NULL---';
-      } else if (v === undefined) {
-        v = '---UNDEFINED---';
-      } else {
-        var vType = typof(v).toUpperCase();
-
-        if (vType === 'NUMBER' || vType === 'BOOLEAN') {
-          v = '---BEGIN:' + vType + '---' + v + '---END:' + vType + '---';
-        } else {
-          v = String(v);
-        }
-      }
-    }
-
-    return v;
-  });
-  var msg = '';
-
-  if (msgs.length > 1) {
-    var lastMsg = msgs.pop();
-    msg = msgs.join('---COMMA---');
-
-    if (lastMsg.indexOf(' at ') === 0) {
-      msg += lastMsg;
-    } else {
-      msg += '---COMMA---' + lastMsg;
-    }
-  } else {
-    msg = msgs[0];
-  }
-
-  console[type](msg);
-}
+eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nSyntaxError: E:\\\\dev\\\\live-stream\\\\pages\\\\create-live\\\\create-live.nvue: Unexpected token (116:9)\\n\\n  114 | \\t\\t\\tuni.showToast({\\n  115 | \\t\\t\\t\\ttitle:'画质切换为' + item.desc,\\n> 116 | \\t\\t\\t\\ticon::'none'\\n      | \\t\\t\\t\\t     ^\\n  117 | \\t\\t\\t});\\n  118 | \\t\\t\\tthis.$refs.popup.close()\\n  119 | \\t\\t},\\n    at Object._raise (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:746:17)\\n    at Object.raiseWithData (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:739:17)\\n    at Object.raise (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:733:17)\\n    at Object.unexpected (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:8807:16)\\n    at Object.parseExprAtom (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:10130:20)\\n    at Object.parseExprAtom (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:4638:20)\\n    at Object.parseExprSubscripts (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:9656:23)\\n    at Object.parseMaybeUnary (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:9636:21)\\n    at Object.parseExprOps (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:9506:23)\\n    at Object.parseMaybeConditional (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:9479:23)\\n    at Object.parseMaybeAssign (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:9434:21)\\n    at Object.parseObjectProperty (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:10586:101)\\n    at Object.parseObjPropValue (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:10611:101)\\n    at Object.parseObjectMember (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:10535:10)\\n    at Object.parseObj (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:10448:25)\\n    at Object.parseExprAtom (F:\\\\tools\\\\HBuilderX.2.8.13.20200927\\\\HBuilderX\\\\plugins\\\\uniapp-cli\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:10055:28)\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiI4LmpzIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///8\n");
 
 /***/ }),
+/* 9 */,
 /* 10 */
 /*!**********************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
