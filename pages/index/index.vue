@@ -29,42 +29,42 @@ import lList from '../../components/common/l-list.vue';
 				list:[
 				{
 					rank: 4,
-					image: '../../static/me.jpg',
+					image: 'http://aadsadas.oss-cn-beijing.aliyuncs.com/%E7%9B%B4%E6%92%ADapp/1.jpg',
 					people: 990,
 					title: '体育',
 					finish:0    //0表示结束 1 表示正在直播
 				},
 				{
 					rank: 1,
-					image: '../../static/me.jpg',
+					image: 'http://aadsadas.oss-cn-beijing.aliyuncs.com/%E7%9B%B4%E6%92%ADapp/2.jpg',
 					people: 122,
 					title: 'S10',
 					finish:0    //0表示结束 1 表示正在直播
 				},
 				{
 					rank: 3,
-					image: '../../static/me.jpg',
+					image: 'http://aadsadas.oss-cn-beijing.aliyuncs.com/%E7%9B%B4%E6%92%ADapp/3.jpg',
 					people: 324,
 					title: '王者荣耀',
 					finish: 0    //0表示结束 1 表示正在直播
 				},
 				{
 					rank: 6,
-					image: '../../static/me.jpg',
+					image: 'http://aadsadas.oss-cn-beijing.aliyuncs.com/%E7%9B%B4%E6%92%ADapp/4.jpg',
 					people: 684,
 					title: '中超',
 					finish: 1    //0表示结束 1 表示正在直播
 				},
 				{
 					rank: 5,
-					image: '../../static/me.jpg',
+					image: 'http://aadsadas.oss-cn-beijing.aliyuncs.com/%E7%9B%B4%E6%92%ADapp/5.jpg',
 					people: 543,
 					title: '财经',
 					finish: 1    //0表示结束 1 表示正在直播
 				},
 				{
 					rank: 2,
-					image: '../../static/me.jpg',
+					image: 'http://aadsadas.oss-cn-beijing.aliyuncs.com/%E7%9B%B4%E6%92%ADapp/6.jpg',
 					people: 1100,
 					title: '学习',
 					finish: 1    //0表示结束 1 表示正在直播

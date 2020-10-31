@@ -1606,7 +1606,7 @@ var render = function() {
               _c("v-uni-image", {
                 staticClass: _vm._$g(4, "sc"),
                 staticStyle: {
-                  width: "180rpx",
+                  width: "150rpx",
                   height: "145rpx",
                   position: "absolute"
                 },

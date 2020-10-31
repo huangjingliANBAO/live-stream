@@ -4,7 +4,7 @@
 		<view class="flex align-center">
 			<view class="flex align-center justify-center position-relative"
 			style="width: 180rpx;height: 160rpx;">
-			<image src="../../static/me.jpg" class="rounded-circle" style="width: 180rpx;height: 145rpx;position: absolute;top-60rpx;"></image>
+			<image src="../../static/me.jpg" class="rounded-circle" style="width: 150rpx;height: 145rpx;position: absolute;top-60rpx;"></image>
 			
 			</view>
 			<view class="flex flex-column">
@@ -53,7 +53,6 @@
 	.top{
 		width: 750rpx;
 		height: 260rpx;
-		background-image: url(../../static/logo.png);
 		background-size: cover;
 		background-image: linear-gradient(to right,#BA7ACE 0%,#8745FF 100%);
 	}
