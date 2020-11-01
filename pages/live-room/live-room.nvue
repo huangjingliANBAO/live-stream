@@ -108,7 +108,7 @@
 						<text class="iconfont mb-1">&#xe611;</text>
 						<text class="font">暂停</text>
 					</view>
-					<view class="flex flex-column align-center justify-center" style="width: 150rpx;height: 150rpx;" @click="back">
+					<view class="flex flex-column align-center justify-center" style="width: 150rpx;height: 150rpx;" @click="back(e)">
 						<text class="iconfont mb-1">&#xe64d;</text>
 						<text class="font">退出</text>
 					</view>
