@@ -38,6 +38,10 @@
 				}
 			}
         }
+        ,{
+            "path" : "pages/live-room/live-room",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

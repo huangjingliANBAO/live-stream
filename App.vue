@@ -11,9 +11,9 @@
 			uni.onTabBarMidButtonTap(() => {
 				uni.navigateTo({
 					url:'pages/create-live/create-live'
-				});
+				})
 				console.log('点击了中间按钮1111');
-			})
+			});
 		},
 		onShow: function () {
 			console.log('App Show')

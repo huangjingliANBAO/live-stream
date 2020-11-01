@@ -10,7 +10,7 @@
 			</view>
 			<view class="position-absolute rounded p-2 flex align-center" sytle="left:90rpx;right:100rpx;height:160rpx;background-color:rgba(0,0,0,0.2);">
 				<view style="height: 120rpx;width: 120rpx;" class="position-relative rounded">
-					<image src="../../static/gift/7.png" sytle="height:120rpx;width:120rpx"></image>
+					<image src="../../static/me.jpg" sytle="height:120rpx;width:120rpx"></image>
 					<text class="text-white position-absolute font" style="left: 0;right: 0;bottom: 0;">更换封面</text>
 				</view>
 				<view class="flex-1 ml-2">
@@ -123,6 +123,9 @@
 			}
 		},
 		methods: {
+			open:function(){
+			     this.$refs.popup[0].open()
+			 },
 			handleSliderChange(e) {
 				this[this.popupType] = e.detail.value
 			},
