@@ -75,22 +75,19 @@
 
 		<view class="flex align-center px-5 py-3">
 			<view class="flex-1 flex align-center justify-center">
-				<view
-					class="iconfont icon-weixin font-xlg text-white  flex align-center justify-center rounded-circle"
-					style="width: 100rpx;height: 100rpx;background-color: #65CD9F;"
-				></view>
+				<view style="height: 50rpx;width: 50rpx;">
+					<image src="../../static/QQ.png" style="width: 100rpx;height: 100rpx;"></image>
+				</view>
 			</view>
 			<view class="flex-1 flex align-center justify-center">
-				<view
-					class="iconfont icon-QQ font-xlg text-white flex align-center justify-center rounded-circle"
-					style="width: 100rpx;height: 100rpx;background-color: #55ACF5;"
-				></view>
+				<view style="height: 50rpx;width: 50rpx;">
+					<image src="../../static/微信.png" style="width: 100rpx;height: 100rpx;"></image>
+				</view>
 			</view>
 			<view class="flex-1 flex align-center justify-center">
-				<view
-					class="iconfont icon-xinlangweibo font-xlg text-white  flex align-center justify-center rounded-circle"
-					style="width: 100rpx;height: 100rpx;background-color: #EC7E41;"
-				></view>
+				<view style="height: 50rpx;width: 50rpx;">
+					<image src="../../static/微博.png" style="width: 100rpx;height: 100rpx;"></image>
+				</view>
 			</view>
 		</view>
 
