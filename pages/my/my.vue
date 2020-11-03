@@ -4,7 +4,7 @@
 		<view class="top flex align-center justify-center"></view>
 		<view v-if="!user" class="flex align-center">
 			<view class="flex align-center justify-center position-relative" style="width: 180rpx;height: 160rpx;">
-				<image src="/static/gift/2.png" class="rounded-circle" style="height: 145rpx; width: 145rpx; position: absolute;top: -60rpx;"></image>
+				<image src="/static/me.jpg" class="rounded-circle" style="height: 145rpx; width: 145rpx; position: absolute;top: -60rpx;"></image>
 			</view>
 			<view class="flex flex-column">
 				<text class="font-md">未登录</text>
@@ -20,7 +20,7 @@
 			<view class="flex align-center">
 				<view class="felx align-center justify-center position-relative" style="width: 180rpx; height: 180rpx;">
 					<image
-					:src="user.avatar || '/static/gift/2.png'"
+					:src="user.avatar || '/static/me.jpg'"
 					class="rounded-circle"
 					style="width: 130rpx; height: 130rpx;position: absolute;top: -60rpx;"
 					></image>

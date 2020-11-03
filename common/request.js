@@ -3,7 +3,7 @@ export default {
 	common: {
 		// #ifndef H5
 		// https://houyuejia.utools.club 7001
-		baseUrl: "https://houyuejia.utools.club/api",
+		baseUrl: "https://zhibo.utools.club/api",
 		// #endif
 		// #ifdef H5
 		baseUrl: "/api",

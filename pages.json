@@ -10,7 +10,11 @@
 			}
 		}, {
 			"path": "pages/my/my",
-			"style": {}
+			"style": {
+				"app-plus":{
+					"titleNView":false
+				}
+			}
 		}, {
 			"path": "pages/live/live",
 			"style": {
@@ -46,7 +50,11 @@
 		}
 	    ,{
             "path" : "pages/login/login",
-            "style" : {}
+            "style" : {
+				"app-plus":{
+					"titleNView":false
+				}
+			}
         }
     ],
 	"globalStyle": {
