@@ -1,91 +1,102 @@
 <template>
-	<view class="content">
-			<!-- 轮播图 -->
-			<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="200" style="width: 750rpx;height: 250rpx;">
-				<swiper-item>
-					<image src="../../static/1.jpg" style="width: 750rpx;height: 250rpx;"></image>
-				</swiper-item>
-				<swiper-item>
-					<image src="../../static/2.jpg" style="width: 750rpx;height: 250rpx;"></image>
-				</swiper-item>
-			</swiper>
-		<!-- </view> -->
-		<view class="flex flex-wrap">
-			<l-list v-for="(item,index) in list" :key="index" :item="item" :index="index" @into="live"></l-list>
+	<view>
+		<view class="top flex align-center justify-center">
+			<input style="width: 600rpx;height: 70rpx;background-color: rgb(0,0,0,0.2);"
+			 type="text"
+			 class="rounded-circle mx-1 pl-5"
+			 placeholder="搜索直播间"/>
 		</view>
+		<!-- 列表 -->
+		<view class="flex flex-wrap">
+			<view class="list-item" v-for="(item,index) in list" :key="index">
+				<f-card :item="item" :index="index" @click="openLive(item.id)"></f-card>
+			</view>
+		</view>
+		<view class="f-divider"></view>
+		<view class="flex align-center justify-center py-3">
+			<text class="font-md text-secondary">{{loadText}}</text>
+		</view>
+	
 	</view>
 </template>
 
 <script>
-import navBar from '../../components/common/nav-bar.vue';
-import lList from '../../components/common/l-list.vue';
-	export default {
-		components:{
-			navBar,lList
+import fCard from '@/components/common/f-card.vue';
+export default {
+	components:{
+		fCard
+	},
+	data(){
+		return{
+			list:[],
+			page:1,
+			loadText:'上拉加载更多'
+		};
+	},
+	onLoad(){
+		this.getData();
+	},
+	onPullDownReffesh(){
+		this.page = 1;
+		this.getData()
+		.then(res => {
+			uni.showToast({
+				title:'刷新成功',
+				icon:'none'
+			});
+			uni.stopPullDownRefresh();
+		})
+		.catch(err => {
+			uni.stopPullDownRefresh();
+		});
+		
+	},
+	onReachBottom(){
+		if(this.loadText !== '上拉加载更多'){
+			return;
+		}
+		this.loadText = '加载中...';
+		this.page++;
+		this.getData();
+	},
+	methods:{
+		getData(){
+			let page = this.page;
+			return this.$H
+			.get('/live/list/' + page)
+			.then(res => {
+				(this.list = page === 1 ? res :[...this.list, ...res]),
+				(this.loadText = res.length < 10 ? '没有更多了' : '上拉加载更多');
+			})
+			.catch(err => {
+				if(this.page > 1){
+					this.page--;
+					this.loadText = '上拉加载更多';
+				}
+			});
 		},
-		data() {
-			return{
-				
-				list:[
-				{
-					rank: 4,
-					image: 'http://aadsadas.oss-cn-beijing.aliyuncs.com/%E7%9B%B4%E6%92%ADapp/1.jpg',
-					people: 990,
-					title: '体育',
-					finish:0    //0表示结束 1 表示正在直播
-				},
-				{
-					rank: 1,
-					image: 'http://aadsadas.oss-cn-beijing.aliyuncs.com/%E7%9B%B4%E6%92%ADapp/2.jpg',
-					people: 122,
-					title: 'S10',
-					finish:0    //0表示结束 1 表示正在直播
-				},
-				{
-					rank: 3,
-					image: 'http://aadsadas.oss-cn-beijing.aliyuncs.com/%E7%9B%B4%E6%92%ADapp/3.jpg',
-					people: 324,
-					title: '王者荣耀',
-					finish: 0    //0表示结束 1 表示正在直播
-				},
-				{
-					rank: 6,
-					image: 'http://aadsadas.oss-cn-beijing.aliyuncs.com/%E7%9B%B4%E6%92%ADapp/4.jpg',
-					people: 684,
-					title: '中超',
-					finish: 1    //0表示结束 1 表示正在直播
-				},
-				{
-					rank: 5,
-					image: 'http://aadsadas.oss-cn-beijing.aliyuncs.com/%E7%9B%B4%E6%92%ADapp/5.jpg',
-					people: 543,
-					title: '财经',
-					finish: 1    //0表示结束 1 表示正在直播
-				},
-				{
-					rank: 2,
-					image: 'http://aadsadas.oss-cn-beijing.aliyuncs.com/%E7%9B%B4%E6%92%ADapp/6.jpg',
-					people: 1100,
-					title: '学习',
-					finish: 1    //0表示结束 1 表示正在直播
-				},
-				]
-			}
-		},
-		onLoad() {
-			// uni.hideTabBar();
-		},
-		methods:{
-			live(value) {
-				// console.log(value);
-				uni.navigateTo({
-					url: '/pages/live/live'
-				})
-				
-			}
+		openLive(id){
+			uni.navigateTo({
+				url:'../live/live?id=' + id
+			});
 		}
 	}
+};
 </script>
 
 <style>
+	.top{
+		width: 750rpx;
+		height: 260rpx;
+		background-image: url(../../static/gift/3.png);
+		background-size: cover;
+		background-image: linear-gradient(to right,#ba7ace 0%,#8745ff 100%);
+	}
+	.list-item{
+		width: 375rpx;
+		height: 375rpx;
+		padding: 5rpx;
+		box-sizing: border-box;
+		position: relative;
+	}
 </style>

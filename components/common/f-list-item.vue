@@ -1,5 +1,5 @@
 <template>
-	<view class="p-3 flex align-center" hover-class="bg-light" @click="$emait('click')">
+	<view class="p-3 flex align-center" hover-class="bg-light">
 		<text class="iconfont mr-3" :class="icon"></text>
 		<text class="font-md">{{title}}</text>
 		<view class="ml-auto">
