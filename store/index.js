@@ -39,6 +39,13 @@ export default new Vuex.Store({
 				   data:e
 			   })
 		   }
+		   //全局事件，用来监听发送礼物
+		   let giftEvent = (e) => {
+			   uni.$emit('live',{
+				   type:'gift',
+				   data:e
+			   })
+		   }
 		   //监听连接
 		     S.on('connect',()=>{
 		      console.log('socket已连接')
@@ -62,6 +69,8 @@ export default new Vuex.Store({
 			  S.on('online', onlineEvent)
 			  //监听弹幕消息
 			  S.on('comment',commentEvent)
+			  //监听礼物接受
+			  S.on('gift',giftEvent)
 			  // 监听来自服务器端的消息
 			  S.on(S.id, (e) => {
 				  console.log(e)
@@ -72,6 +81,7 @@ export default new Vuex.Store({
 				  if(S) {
 					  S.removeListener('online', onlineEvent)
 					  S.removeListener('comment',commentEvent)
+					  S.removerListener('gift',giftEvent)
 				  }
 			  }
 		     //监听失败

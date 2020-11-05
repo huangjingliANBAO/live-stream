@@ -204,6 +204,13 @@
 				// console.log(this.detail);
 				this.sign = res.sign;
 			});
+			//请求礼物列表接口
+			$H.get('/gift/list').then(res => {
+				this.gifts = res.map(item => {
+					item.image = $C.imgUrl + item.image
+					return item
+				})
+			})
 			console.log(this.list.length)
 			// 监听全局事件
 			uni.$on('live', this.handleLiveEvent);
@@ -277,14 +284,23 @@
 					return
 				}
 				let g = this.gifts[index]
-				this.$refs.gift.send({
-					username: this.$store.state.user.username,
-					avatar: this.$store.state.user.avatar,
-					gift_name: g.name,
-					gift_image: g.image,
-					num: 10
-				})
-				this.closeGift()
+				if(!this.token && !this.socket){
+					uni.navigateTo({
+						url:'../login/login'
+					});
+					return uni.showToast({
+						title:'请先登录',
+						icon:'none'
+					});
+				}
+				console.log(g);
+				if(this.socket){
+					this.socket.emit('gift',{
+						live_id:this.id,
+						gift_id:g.id,
+						token:this.token
+					})
+				}
 			},
 			// 跳转到充值页面
 			openCoin() {
