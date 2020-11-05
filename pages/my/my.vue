@@ -2,9 +2,12 @@
 	<view>
 		<!-- 顶部紫色渐变背景 -->
 		<view class="top flex align-center justify-center"></view>
+		<view style="position: absolute;top: 90rpx;right: 20rpx;" @click="settings">
+			<image src="../../static/setting.png" style="height: 70rpx;width: 70rpx;"></image>
+		</view>
 		<view v-if="!user" class="flex align-center">
 			<view class="flex align-center justify-center position-relative" style="width: 180rpx;height: 160rpx;">
-				<image src="/static/me.jpg" class="rounded-circle" style="height: 145rpx; width: 145rpx; position: absolute;top: -60rpx;"></image>
+				<image src="/static/gift/2.png" class="rounded-circle" style="height: 145rpx; width: 145rpx; position: absolute;top: -60rpx;"></image>
 			</view>
 			<view class="flex flex-column">
 				<text class="font-md">未登录</text>
@@ -20,7 +23,7 @@
 			<view class="flex align-center">
 				<view class="felx align-center justify-center position-relative" style="width: 180rpx; height: 180rpx;">
 					<image
-					:src="user.avatar || '/static/me.jpg'"
+					:src="user.avatar || '/static/gift/2.png'"
 					class="rounded-circle"
 					style="width: 130rpx; height: 130rpx;position: absolute;top: -60rpx;"
 					></image>
@@ -46,6 +49,7 @@
 		</f-list-item>
 		<f-list-item icon="iconmore" title="历史记录" ></f-list-item>
 		<f-list-item icon="icontuichu" title="退出" @click="logout"></f-list-item>
+		<f-list-item icon="icontuichu" title="直播" @click="live"></f-list-item>
 		</view>
 	</view>
 </template>
@@ -66,12 +70,12 @@
 			})
 		},
 		onShow() {
-			this.$store.dispatch('getUserInfo');
+			// this.$store.dispatch('getUserInfo');
 		},
 		methods:{
-			settings(){
-				this.authJump({
-					url:'../user-set/user-set'
+			live(){
+				uni.navigateTo({
+					url:'../test/test'
 				})
 			},
 			openLogin(){
@@ -85,6 +89,11 @@
 					delta: 1
 				})
 			 });
+			},
+			settings(){
+				this.authJump({
+					url:'../user-set/user-set'
+				})
 			}
 		}
 	}

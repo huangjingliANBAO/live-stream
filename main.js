@@ -11,20 +11,21 @@ Vue.prototype.$H = $H
 import store from './store/index.js';
 Vue.prototype.$store = store
 
-Vue.config.productionTip = false
-//权限验证，必须登录后才能进入的页面
+// 权限验证，必须登录后才能进入的页面
 Vue.prototype.authJump = (options) => {
-	if (!store.state.token){
+	if(!store.state.token) {
 		uni.showToast({
 			title:'请先登录',
-			icon:'none'
+			icon: 'none'
 		});
 		return uni.navigateTo({
-			url:'/pages/login/login.vue'
+			url: '/pages/login/login.vue'
 		});
 	}
-	uni.navigateTo(options);
+	uni.navigateTo(options)
 }
+
+Vue.config.productionTip = false
 
 Vue.prototype.authMethod = (callback) => {
 	if (!store.state.token) {

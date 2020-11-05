@@ -125,8 +125,8 @@
 
 <script>
 	import uniPopup from '../../components/uni-ui/uni-popup/uni-popup.vue'
-	import fGift from '../../components/common/f-gift.vue';
-	import fDanmu from '../../components/common/f-danmu.vue';
+	import fGift from '../../components/live/f-gift.vue';
+	import fDanmu from '../../components/live/f-danmu.vue';
 	
 	import myGifts from '../../common/gifts.js'
 	export default {
